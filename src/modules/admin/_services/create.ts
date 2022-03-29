@@ -37,7 +37,11 @@ export const createOneService = async (
 	// add email sending logic
 	const message = {
 		to: data.email,
-		from: "JuanBreath Admin",
+		from: "ryannograles.025.official@gmail.com",
+		envelope : {
+			from: "JuanBreath Admin <ryannograles.025.official@gmail.com>",
+			to: data.email
+		},
 		subject: `Account and password setup`,
 		html: `<p>Welcome ${data.username}, your password is Password: juanbreath_admin please change this as soon as you logged in.</p>`,
 	};

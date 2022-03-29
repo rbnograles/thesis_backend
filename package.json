@@ -8,8 +8,7 @@
 		"build": "tsc",
 		"start:dev": "nodemon",
 		"start:prod": "node -r ts-node/register/transpile-only -r tsconfig-paths/register ./build/src/index.js",
-		"seed": "ts-node -r tsconfig-paths/register ./bin/index.ts",
-		"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+		"seed": "ts-node -r tsconfig-paths/register ./bin/index.ts"
 	},
 	"repository": "git+https://github.com/MrZeal025/thesis_backend.git",
 	"keywords": [],

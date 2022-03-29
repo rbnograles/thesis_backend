@@ -28,14 +28,6 @@ server.use(express.json({ limit: "50mb" }));
 server.use("/api", mainRouter);
 server.use(clientResponse);
 
-// check if in production
-if (process.env.NODE_ENV === "production") {
-	server.use(express.static("../client/build"));
-	server.get("*", (req, res) => {
-		res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-	});
-}
-
 // server start boot logs
 const startServer = async (): Promise<void> => {
 	console.clear();

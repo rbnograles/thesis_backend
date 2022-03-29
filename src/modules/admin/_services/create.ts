@@ -3,10 +3,6 @@ import { ExistingError } from "../../../_utils/errors";
 import { isExistingInDatabase } from "../../../_utils/isExistingDatabase";
 import { AdminAccountModel, IAdminAccountType, AdminSchema } from "../model";
 import nodemailer from "nodemailer";
-// import sgMail from "@sendgrid/mail";
-
-// const apiKey = process.env.SEND_GRID_API_KEY;
-// sgMail.setApiKey(apiKey);
 
 export const createOneService = async (
 	data: AdminSchema
@@ -41,7 +37,7 @@ export const createOneService = async (
 	// add email sending logic
 	const message = {
 		to: data.email,
-		from: "ryannograles.025.official@gmail.com",
+		from: "JuanBreath Admin",
 		subject: `Account and password setup`,
 		html: `<p>Welcome ${data.username}, your password is Password: juanbreath_admin please change this as soon as you logged in.</p>`,
 	};
@@ -52,11 +48,6 @@ export const createOneService = async (
 		}).catch((error) => {
 			console.log(error)
 		})
-
-	// sgMail
-	// 	.send(message)
-	// 	.then((response) => console.log(response))
-	// 	.catch((error) => console.log(error));
 
 	const result = await AdminAccountModel.create(data);
 	return result;

@@ -18,7 +18,7 @@ export const createOneService = async (
 		service: "gmail",
 		auth: {
 			type: "OAuth2",
-			user: "ryannograles.025.official@gmail.com",
+			user: "juanbreath.official@gmail.com",
 			clientId: process.env.CLIENT_ID,
 			clientSecret: process.env.CLIENT_SECRET,
 			refreshToken: process.env.AUTH_REFRESH_TOKEN
@@ -37,9 +37,9 @@ export const createOneService = async (
 	// add email sending logic
 	const message = {
 		to: data.email,
-		from: "ryannograles.025.official@gmail.com",
+		from: "JuanBreath Admin <juanbreath.official@gmail.com>",
 		envelope : {
-			from: "JuanBreath Admin <ryannograles.025.official@gmail.com>",
+			from: "JuanBreath Admin <juanbreath.official@gmail.com>",
 			to: data.email
 		},
 		subject: `Account and password setup`,

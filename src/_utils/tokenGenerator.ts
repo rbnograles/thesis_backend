@@ -3,6 +3,8 @@ import jwt from "jsonwebtoken";
 type jwtPayload = {
 	id: string;
 	username?: string;
+	firstName: string;
+	lastName: string;
 	type: "superadmin" | "sub-admin";
 	role?: string;
 };
@@ -24,6 +26,8 @@ export const generateToken = (
 	// build user payload
 	const payload: jwtPayload = {
 		id: user._id,
+		firstName: user.firstName,
+		lastName: user.lastName,
 		username: user.username,
 		type: userType,
 		role: user.role,

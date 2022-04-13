@@ -1,6 +1,6 @@
 import { RequestHandler } from "express";
 // user credential model
-import { LoginSchema } from "../schema";
+import { LoginSchema, ResetPasswordSchema } from "../schema";
 import { AdminAccountModel } from "../../admin/model";
 // utilities
 import bcrypt from "bcryptjs";
@@ -16,6 +16,32 @@ type LoginSchemaType = {
 export const validateCredentials: RequestHandler = async (req, res, next) => {
 	try {
 		validateRequestSchema(LoginSchema, req.body);
+
+		const { username } = req.body as LoginSchemaType;
+		AdminAccountModel.findOne({ username })
+			.then(async (user) => {
+				if (user) {
+					const match = await bcrypt.compare(
+						req.body.password,
+						user.password
+					);
+					if (!match) throw AuthenticationError("Wrong password.");
+					next();
+				} else {
+					throw AuthenticationError(
+						"There is no registered user that matches your credentials."
+					);
+				}
+			})
+			.catch(next);
+	} catch (error) {
+		next(error);
+	}
+};
+
+export const validateResetPasswordCredentials: RequestHandler = async (req, res, next) => {
+	try {
+		validateRequestSchema(ResetPasswordSchema, req.body);
 
 		const { username } = req.body as LoginSchemaType;
 		AdminAccountModel.findOne({ username })

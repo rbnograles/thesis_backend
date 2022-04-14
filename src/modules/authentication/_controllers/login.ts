@@ -1,6 +1,6 @@
 import { RequestHandler } from "express";
 // user credential model
-import { LoginSchema, ResetPasswordSchema } from "../schema";
+import { LoginSchema, ResetPasswordSchema, ForgotPasswordSchema } from "../schema";
 import { AdminAccountModel } from "../../admin/model";
 // utilities
 import bcrypt from "bcryptjs";
@@ -60,6 +60,23 @@ export const validateResetPasswordCredentials: RequestHandler = async (req, res,
 				}
 			})
 			.catch(next);
+	} catch (error) {
+		next(error);
+	}
+};
+
+export const validateForgotPasswordCredentials: RequestHandler = async (req, res, next) => {
+	try {
+		validateRequestSchema(ForgotPasswordSchema, req.body);
+		const user = await AdminAccountModel.findOne({ email : req.body.email });
+		console.log(user)
+		if (user) {
+			next();
+		} else {
+			throw AuthenticationError(
+				"There is no registered user that matches your credentials."
+			);
+		}
 	} catch (error) {
 		next(error);
 	}

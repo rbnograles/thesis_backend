@@ -43,7 +43,7 @@ export const createOneService = async (
 			to: data.email
 		},
 		subject: `Account and password setup`,
-		html: `<p>Welcome ${data.username}, your password is Password: juanbreath_admin please change this as soon as you logged in.</p>`,
+		html: `<p>Welcome ${data.username}, your password is, </p><p>juanbreath_admin</p><p>Please change this as soon as you logged in.</p>`,
 	};
 
 	transporter

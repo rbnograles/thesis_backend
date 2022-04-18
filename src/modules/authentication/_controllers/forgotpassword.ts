@@ -44,7 +44,7 @@ export const forgotPasswordController: RequestHandler = async (req, res, next) =
 			to: req.body.email
 		},
 		subject: `Forgot Password Request`,
-		html: `<p>Greetings, a password reset request has been sent to the system. An auto generated password is created for your ease.</p><p>Your new password is <b>${password}</b>, change this upon logging in to the system.</p><p>Please feel free to respond to this email. It was sent from a monitored email address, and we would love to hear from you.</p>`,
+		html: `<p>Greetings, a password reset request has been sent to the system. An auto generated password is created for your ease.</p><p>Your new password is,</p><p><b>${password}</b></p><p>Kindly change this upon logging in to the system.</p><p>Please feel free to respond to this email. It was sent from a monitored email address, and we would love to hear from you.</p>`,
 	};
 
 	transporter

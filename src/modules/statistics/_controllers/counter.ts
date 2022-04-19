@@ -1,7 +1,3 @@
-// totatl active cases
-// total recovered
-// total close contacts
-
 import { RequestHandler } from "express";
 import { UserAccountModel } from "@src/modules/users/model";
 import { PositiveLogsModel } from "@src/modules/positive-logs/model";

@@ -1,6 +1,6 @@
 import { RequestHandler } from "express";
-import { UserAccountModel } from "@src/modules/users/model";
-import { PositiveLogsModel } from "@src/modules/positive-logs/model";
+import { UserAccountModel } from "../../users/model";
+import { PositiveLogsModel } from "../../positive-logs/model";
 
 export const appStatisticsController: RequestHandler = async (req, res, next) => {
 

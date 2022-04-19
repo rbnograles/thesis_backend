@@ -11,6 +11,7 @@ import { roleRouter } from "./modules/roles";
 import { visitationHistoryRouter } from "./modules/visitation-history";
 import { usersRouter } from "./modules/users";
 import { positiveLogsRouter } from "./modules/positive-logs";
+import { statisticsRouter } from "./modules/statistics";
 
 export const mainRouter = Router();
 
@@ -34,3 +35,4 @@ mainRouter.use("/admins", adminRouter);
 mainRouter.use("/permissions", permissionRouter);
 mainRouter.use("/roles", roleRouter);
 mainRouter.use("/users", usersRouter);
+mainRouter.use('/statistics', statisticsRouter);

@@ -9,7 +9,6 @@ import path from "path";
 import { mainRouter } from "./routes";
 import { clientResponse } from "./_utils/clientResponse";
 import { connectToDatabase } from "./_utils/dbConnect";
-import { build } from "joi";
 
 // server configuration start up
 dotenv.config();

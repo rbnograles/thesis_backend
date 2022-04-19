@@ -11,6 +11,7 @@ const modules = [
 	"Admin-Application-Download",
 	"Visitation-History",
 	"Users",
+	"Statistics"
 ];
 
 const actions = ["Read", "Create", "Update", "Delete"];
@@ -50,7 +51,16 @@ export const PermissionSeed = async () => {
 						: `${capitalize(
 								access
 						  )} items in the Roles panel of the Account Manager settings`;
-			} else {
+			} else if(mod === "Statistics") {
+				// Auth items go here
+				description =
+					access === "view"
+						? `Access to Roles Panel in the Dashboard Statistics`
+						: `${capitalize(
+								access
+						  )} items in the Roles panel of the Dashboard Statistics`;
+			} 
+			else {
 				// Rest of items that are in the Configurations go here.
 				if (access === "view") {
 					description = `Access to view ${

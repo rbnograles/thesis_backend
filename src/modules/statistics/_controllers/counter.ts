@@ -8,7 +8,7 @@ export const appStatisticsController: RequestHandler = async (req, res, next) =>
     const totalActiveCases = await PositiveLogsModel.find({ healthStatus: "Positive" });
     const totalRecoveredCases = await PositiveLogsModel.find({ healthStatus: "Recivered" });
     const totalCloseContactCases = await PositiveLogsModel.find({});
-    console.log(totalCloseContactCases)
+
     return res.status(200).json({ 
         success: true, 
         totalUserCount: totalUserCount.length, 

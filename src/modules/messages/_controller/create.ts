@@ -33,9 +33,10 @@ export const createOneController: RequestHandler = async (req, res, next) => {
 					.status(200)
 					.json({ success: true, otp: otp, message: message })
 			)
-			.catch((err) =>
-				res.status(200).json({ success: false, message: err })
-			);
+			.catch((err) => {
+				console.log(err.response)
+				res.status(200).json({ success: false, message: err })	
+			});
 	} catch (err) {
 		next(err);
 	}

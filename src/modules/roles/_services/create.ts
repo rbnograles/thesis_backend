@@ -6,8 +6,9 @@ export const createOneService = async (data: IRole): Promise<IRole> => {
 	if (await isExistingInDatabase("name", data.name, RoleModel))
 		throw ExistingError("Role");
 
-	const result = await RoleModel.create(data);
-	return result;
+	await RoleModel.create(data);
+	
+	return await RoleModel.findOne({ name: data.name }).populate("permissions");
 };
 
 export const createManyService = async (

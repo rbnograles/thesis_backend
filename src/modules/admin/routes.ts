@@ -46,9 +46,8 @@ router
 
 router
 	.route("/:id")
-	.get(checkAccess(["Admin:Read"]), getOneController)
+	.get(getOneController)
 	.put(
-		checkAccess(["Admin:Read", "Admin:Update"]),
 		validateRequest(adminPutSchema),
 		putOneController
 	)

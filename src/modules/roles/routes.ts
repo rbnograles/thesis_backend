@@ -1,7 +1,7 @@
 import { Router } from "express";
 
 // controllers
-import { getManyController, getOneController } from "./_controllers/get";
+import { getManyController, getOneController, getOneRoleExclusiveController } from "./_controllers/get";
 import { checkAccess } from "../../middlewares/checkAccess";
 import { createOneController } from "./_controllers/create";
 import { putOneController } from "./_controllers/put";
@@ -29,6 +29,10 @@ router
 		validateArrayOfIds(roleIdArraySchema),
 		deleteManyController
 	);
+
+router
+	.route("/:rolename")
+	.get(getOneRoleExclusiveController)
 
 router
 	.route("/:id")

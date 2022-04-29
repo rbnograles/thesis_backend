@@ -27,7 +27,7 @@ server.use(express.json({ limit: "50mb" }));
 
 // quick download method
 server.get("/api/app/download", (req, res) => {
-	res.download(`${__dirname + "../JuanBreath.apk"}`)
+	res.download(`${__dirname + "/JuanBreath.apk"}`)
 });
 
 server.use("/api", mainRouter);

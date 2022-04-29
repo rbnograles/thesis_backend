@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.router = void 0;
+const express_1 = require("express");
+const create_1 = require("./_controllers/create");
+const get_1 = require("./_controllers/get");
+exports.router = (0, express_1.Router)();
+exports.router.route("/many").get(get_1.getManyController);
+exports.router.route("/:id").get(get_1.getOneController);
+exports.router.route("/close-contacts/:id").get(get_1.getAllCloseContactInformation);
+exports.router.route("/visitation-histroy/:id").get(get_1.getOneVisitationHistory);
+exports.router.route("/").post(create_1.createOneController);
+exports.default = exports.router;

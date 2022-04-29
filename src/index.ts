@@ -24,7 +24,14 @@ server.use(
 
 server.use(morgan("combined"));
 server.use(express.json({ limit: "50mb" }));
+
+// quick download method
+server.get("/api/app/download", (req, res) => {
+	res.download(`${__dirname + "/JuanBreath.apk"}`)
+});
+
 server.use("/api", mainRouter);
+
 server.use(clientResponse);
 
 // server start boot logs

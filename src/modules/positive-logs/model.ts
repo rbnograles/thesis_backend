@@ -11,9 +11,6 @@ export type PositiveTypeSchema = {
 	middleName?: string;
 	lastName: string;
 	nameExtension?: string;
-	studentNumber?: string;
-	facultyPosition?: string;
-	jobTitle?: string;
 	lotNumber?: string;
 	streetName?: string;
 	district?: string;
@@ -52,22 +49,6 @@ const PositiveLogsSchema = new Schema({
 		required: true,
 	},
 	nameExtension: {
-		type: String,
-		default: "",
-	},
-	studentNumber: {
-		type: String,
-		default: "",
-	},
-	facultyPosition: {
-		type: String,
-		default: "",
-	},
-	collegeDepartment: {
-		type: String,
-		default: "",
-	},
-	jobTitle: {
 		type: String,
 		default: "",
 	},

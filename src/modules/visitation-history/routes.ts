@@ -12,9 +12,9 @@ import { visitationHistorySchema } from "./schema";
 
 export const router = Router();
 
-router.route("/:id").get(checkAccess(["Admin:Read"]), getOneController);
-
 router.route("/many").get(checkAccess(["Admin:Read"]), getManyController);
+
+router.route("/:id").get(checkAccess(["Admin:Read"]), getOneController);
 
 router.route("/personal/:id").get(getUserPersonalDataController);
 

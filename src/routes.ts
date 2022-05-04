@@ -20,6 +20,7 @@ mainRouter.use("/messages", messageRouter);
 mainRouter.use("/visitation-history", visitationHistoryRouter);
 mainRouter.use("/public/users", usersRouter);
 mainRouter.use("/public/positive-log", positiveLogsRouter);
+mainRouter.use("/public/location", locationRouter);
 // validators
 mainRouter.use("/auth", authRouter);
 

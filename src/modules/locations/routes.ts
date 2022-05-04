@@ -48,6 +48,10 @@ router
 	);
 
 router
+	.route("/all")
+	.get(getManyController)
+
+router
 	.route("/:id")
 	.get(checkAccess(["Location:Read"]), getOneController)
 	.put(

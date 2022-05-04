@@ -1,7 +1,7 @@
 import { Router } from "express";
 
 // controllers
-import { getManyController, getOneController } from "./_controllers/get";
+import { getManyController, getOneController, getManyControllerFiltered } from "./_controllers/get";
 import {
 	createManyController,
 	createOneController,
@@ -49,7 +49,7 @@ router
 
 router
 	.route("/all")
-	.get(getManyController)
+	.get(getManyControllerFiltered)
 
 router
 	.route("/:id")

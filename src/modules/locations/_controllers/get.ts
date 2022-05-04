@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import { getManyService, getOneService } from "../_services/get";
+import { getManyService, getOneService, getManyServiceFiltered } from "../_services/get";
 
 export const getOneController: RequestHandler = async (req, res, next) => {
 	try {
@@ -14,6 +14,16 @@ export const getOneController: RequestHandler = async (req, res, next) => {
 export const getManyController: RequestHandler = async (req, res, next) => {
 	try {
 		const data = await getManyService();
+
+		res.status(201).json({ success: true, data: data });
+	} catch (err) {
+		next(err);
+	}
+};
+
+export const getManyControllerFiltered: RequestHandler = async (req, res, next) => {
+	try {
+		const data = await getManyServiceFiltered();
 
 		res.status(201).json({ success: true, data: data });
 	} catch (err) {

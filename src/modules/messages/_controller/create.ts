@@ -3,6 +3,7 @@ import { RequestHandler } from "express";
 import { generateOTPCode } from "../../../_utils/otpGenerator";
 import { createOneService } from "../../otp/_services/create";
 import { verifyOneService } from "../../otp/_services/verify";
+import { NotificationModel } from "../../notifications/model";
 
 export const createOneController: RequestHandler = async (req, res, next) => {
 	try {
@@ -74,6 +75,13 @@ export const verifyOneController: RequestHandler = async (req, res, next) => {
 		// 		message: "OTP Code has expired. Please request again.",
 		// 	});
 		// }
+		const time = new Date().toLocaleTimeString().split(':');
+		await NotificationModel.create({
+			new: true, 
+			time: `${time[0]}:${time[1]}`, 
+			description: "Welcome to JuanBreath Contact Tracing Application! We are happy to have you used our system. This system is a requirement for our thesis completion. Rest assured that all your personal information are used for educational purposes only.", 
+			title: "Congratulations!"
+		 })
 
 		return res.status(200).json({
 			success: true,

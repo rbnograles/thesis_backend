@@ -79,6 +79,7 @@ export const verifyOneController: RequestHandler = async (req, res, next) => {
 		await NotificationModel.create({
 			new: true, 
 			time: `${time[0]}:${time[1]}`, 
+			mobileNumber: clientNumber,
 			description: "Welcome to JuanBreath Contact Tracing Application! We are happy to have you used our system. This system is a requirement for our thesis completion. Rest assured that all your personal information are used for educational purposes only.", 
 			title: "Congratulations!"
 		 })

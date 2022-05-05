@@ -21,6 +21,10 @@ const notificationSchema = new Schema({
 		type: String,
 		required: true
 	},
+	mobileNumber: {
+		type: String,
+		required: true
+	},
 	new: {
 		type: Boolean,
 		required: false

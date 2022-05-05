@@ -3,7 +3,7 @@ import { UserAccountModel } from "../../users/model";
 
 export const getOneService = async (id: string) => {
 	const userAccount = await UserAccountModel.findById(id)
-	const result = await NotificationModel.find({ mobileNumber: userAccount.mobileNumber });
+	const result = await NotificationModel.find({ mobileNumber: userAccount.mobileNumber }).sort({ _id: -1 });
 	return result;
 };
 

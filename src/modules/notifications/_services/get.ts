@@ -15,3 +15,8 @@ export const getCountService = async (id: string) => {
 	return count.length;
 };
 
+export const updateCountService = async (id: string) => {
+	const userAccount = await UserAccountModel.findById(id)
+	await NotificationModel.updateMany({ mobileNumber: userAccount.mobileNumber }, { new: false});
+	return true;
+};

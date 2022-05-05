@@ -1,2 +1,2 @@
-export { PermissionModel } from "./model";
-export { router as permissionRouter } from "./routes";
+export { NotificationModel } from "./model";
+export { router as notificationRouter } from "./routes";

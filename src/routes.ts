@@ -12,6 +12,7 @@ import { visitationHistoryRouter } from "./modules/visitation-history";
 import { usersRouter } from "./modules/users";
 import { positiveLogsRouter } from "./modules/positive-logs";
 import { statisticsRouter } from "./modules/statistics";
+import { notificationRouter } from "./modules/notifications";
 
 export const mainRouter = Router();
 
@@ -21,6 +22,7 @@ mainRouter.use("/visitation-history", visitationHistoryRouter);
 mainRouter.use("/public/users", usersRouter);
 mainRouter.use("/public/positive-log", positiveLogsRouter);
 mainRouter.use("/public/location", locationRouter);
+mainRouter.use("/public/notification", notificationRouter);
 // validators
 mainRouter.use("/auth", authRouter);
 

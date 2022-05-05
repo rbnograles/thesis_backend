@@ -50,6 +50,7 @@ export const verifyOneController: RequestHandler = async (req, res, next) => {
 		const clientNumber = `${req.body.mobileNumber}`;
 		// generate 4 ramdom otp code
 		const otpCode = req.body.otpCode;
+		console.log(otpCode)
 		// save the number to database with random otp code and expiration, verified:boolean
 		const verificationStatus = await verifyOneService({
 			mobileNumber: clientNumber,

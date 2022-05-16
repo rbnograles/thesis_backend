@@ -19,7 +19,7 @@ const userAccountSchema = new Schema({
 	},
 	userType: {
 		type: String,
-		default: "Guest",
+		default: "Member",
 	},
 	isVerified: {
 		type: Boolean,

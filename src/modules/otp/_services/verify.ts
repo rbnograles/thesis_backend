@@ -21,11 +21,18 @@ export const verifyOneService = async (data: any) => {
 		// 	return { isExpired: true };
 		// }
 
-		// if the otp is valid, create a new user account for the user
-		userInfo = await UserAccountModel.create({
-			mobileNumber: data.mobileNumber,
-			isVerified: true,
-		});
+		if(await UserAccountModel.findOne({ mobileNumber: data.mobileNumber })) {
+			// if the otp is valid, create a new user account for the user
+			userInfo = await UserAccountModel.findOne({ mobileNumber: data.mobileNumber });
+		} else {
+			// if the otp is valid, create a new user account for the user
+			userInfo = await UserAccountModel.create({
+				mobileNumber: data.mobileNumber,
+				isVerified: true,
+			});
+		}
+
+		
 		// delete the data from the mobile registration
 		await MobileOTPModel.deleteOne({
 			_id: result._id,

@@ -20,7 +20,6 @@ export const createOneController: RequestHandler = async (req, res, next) => {
 		const clientNumber = `+63${req.body.mobileNumber}`;
 		// generate 4 ramdom otp code
 		const otp = generateOTPCode();
-		console.log(otp)
 		const hashedOTP = await bcrypt.hash(otp.toString(), 12);
 		// save the number to database with random otp code and expiration, verified:boolean
 		createOneService({ mobileNumber: clientNumber, otpCode: hashedOTP });

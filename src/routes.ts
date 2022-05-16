@@ -13,6 +13,7 @@ import { usersRouter } from "./modules/users";
 import { positiveLogsRouter } from "./modules/positive-logs";
 import { statisticsRouter } from "./modules/statistics";
 import { notificationRouter } from "./modules/notifications";
+import { deletionAccountRoute } from "./modules/users-for-deletion";
 
 export const mainRouter = Router();
 
@@ -23,6 +24,7 @@ mainRouter.use("/public/users", usersRouter);
 mainRouter.use("/public/positive-log", positiveLogsRouter);
 mainRouter.use("/public/location", locationRouter);
 mainRouter.use("/public/notification", notificationRouter);
+mainRouter.use("/public/delete-account", deletionAccountRoute);
 // validators
 mainRouter.use("/auth", authRouter);
 

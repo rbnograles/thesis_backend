@@ -17,6 +17,7 @@ export type PositiveTypeSchema = {
 	city?: string;
 	barangay?: string;
 	province?: string;
+	createdAt?: string;
 };
 
 const PositiveLogsSchema = new Schema({
@@ -75,6 +76,11 @@ const PositiveLogsSchema = new Schema({
 	province: {
 		type: String,
 		default: "",
+	},
+	// @ts-ignore
+	createdAt: {
+		type: Date,
+		default: Date.now(),
 	},
 });
 

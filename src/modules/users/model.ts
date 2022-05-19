@@ -6,6 +6,7 @@ export type UserSchema = {
 	mobileNumber: string;
 	userHealthStatus: string;
 	isVerified: string;
+	createdAt?: string;
 };
 
 const userAccountSchema = new Schema({

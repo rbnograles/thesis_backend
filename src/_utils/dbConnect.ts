@@ -41,15 +41,9 @@ export const connectToDatabase = async (): Promise<boolean> => {
 		);
 	}
 
-	const mongodbUri = `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`;
-
 	console.log(
-		`Connecting to the MongoDB database at: mongodb://${DB_HOST}:${DB_PORT}`
+		`Connecting to the MongoDB database at: ${process.env.MONGO_DB_URI}`
 	);
 
-	return await mongooseConnector(
-		process.env.NODE_ENV === "production"
-			? process.env.MONGO_DB_URI
-			: mongodbUri
-	);
+	return await mongooseConnector(process.env.MONGO_DB_URI);
 };

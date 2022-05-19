@@ -56,7 +56,7 @@ export const weeklyHealthStatus: RequestHandler = async (req, res, next) => {
         collectiveWeeklyHeatlhReport.push(
             {
                 date: Moment(daysOfWeek[day]).format("MMM DD"),
-                Normal: normalToday,
+                "New User": normalToday,
                 Positive: positiveToday,
                 Recovered: recoveredToday,
             }

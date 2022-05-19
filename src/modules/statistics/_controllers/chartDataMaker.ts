@@ -63,9 +63,8 @@ export const weeklyHealthStatus: RequestHandler = async (req, res, next) => {
         )
     }
 
-    console.log(collectiveWeeklyHeatlhReport)
-
     return res.status(200).json({ 
-        success: true
+        success: true,
+        collectiveWeeklyHeatlhReport: collectiveWeeklyHeatlhReport
     });
 };

@@ -11,6 +11,6 @@ router
 	.route("/all")
 	.get(checkAccess(["Statistics:Read"]), appStatisticsController);
 
-router.route("/weekly-health-status").get(checkAccess(["Statistics:Read"]), weeklyHealthStatus);
+router.route("/weekly-health-status/:selectedDate").get(checkAccess(["Statistics:Read"]), weeklyHealthStatus);
 
 export default router;

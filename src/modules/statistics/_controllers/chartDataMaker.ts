@@ -8,19 +8,23 @@ export const weeklyHealthStatus: RequestHandler = async (req, res, next) => {
     const collectiveWeeklyHeatlhReport = [];
 
     const dates = (current) => {
+        
         var week= new Array(); 
         // Starting Monday not Sunday
-        current.setDate((current.getDate() - current.getDay() +1));
+        current.setDate((current.getDate() - current.getDay() + 1));
         for (var i = 0; i < 7; i++) {
             week.push(
                 new Date(current).toISOString().split('T')[0]
             ); 
-            current.setDate(current.getDate() +1);
+            current.setDate(current.getDate() + 1);
         }
+        
         return week; 
     }
 
-    const daysOfWeek = dates(new Date());
+    const daysOfWeek = dates(new Date(req.params.selectedDate));
+
+    console.log(new Date())
 
     for(let day = 0; day < daysOfWeek.length; day++) {
 

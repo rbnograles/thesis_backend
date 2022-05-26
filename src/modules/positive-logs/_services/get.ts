@@ -8,37 +8,56 @@ export const getOneService = async (id: string): Promise<IPositiveLogsType> => {
 };
 
 export const getOneCloseContactServices = async (id: string): Promise<any> => {
+
 	let visitedLocation = [];
 	let closeContactsVisitations = [];
+	let allVisitationfrom14Days = [];
 
 	const userInfo = await UserAccountModel.find({ mobileNumber: id });
-	const userVisitationInfo = await VisitationHistoryModel.find({
-		userId: userInfo[0]._id,
-	});
+	const past14DayDate = new Date()
+	// get the starting date counting back for 14 days
+	past14DayDate.setDate(past14DayDate.getDate() - 2 * 7);
 
-	for (let i = 0; i < userVisitationInfo.length; i++) {
+	// get all dates from  starting day until current date
+	const dates = (current) => {
+        var week= new Array(); 
+        for (var i = 0; i < 15; i++) {
+            week.push(
+                new Date(current).toISOString().split('T')[0]
+            ); 
+            current.setDate(current.getDate() + 1);
+        }
+        return week; 
+    }
+
+	// initialized the dates function
+	const past14Days = dates(past14DayDate)
+
+	for(let i = 0; i < past14Days.length; i++) {
+		const userVisitationInfo = await VisitationHistoryModel.find({ userId: userInfo[0]._id, date: past14Days[i], action: "Scanned the QR Code" });
+		if(userVisitationInfo.length > 0) {
+			allVisitationfrom14Days.push(...userVisitationInfo);
+		}
+	}
+
+	for (let i = 0; i < allVisitationfrom14Days.length; i++) {
 		visitedLocation.push({
-			location: userVisitationInfo[i].location,
-			date: userVisitationInfo[i].date,
-			time: userVisitationInfo[i].time,
+			location: allVisitationfrom14Days[i].location,
+			date: allVisitationfrom14Days[i].date,
+			time: allVisitationfrom14Days[i].time,
 		});
 	}
 
-	visitedLocation = visitedLocation.filter(
-		(v, i, a) => a.findIndex((t) => t.id === v.id) === i
-	);
-
-	console.log(visitedLocation);
-
-	for (let y = 0; y < visitedLocation.length; y++) {
+	for (let i = 0; i < visitedLocation.length; i++) {
+		
 		const closeContacts = await VisitationHistoryModel.find({
-			location: visitedLocation[y].location,
-			date: visitedLocation[y].date,
+			location: visitedLocation[i].location,
+			date: visitedLocation[i].date,
+			action: "Scanned the QR Code"
 		}).populate("userId");
 
 		closeContactsVisitations.push(...closeContacts);
 	}
-
 	return closeContactsVisitations;
 };
 

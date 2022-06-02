@@ -11,6 +11,8 @@ export type PositiveTypeSchema = {
 	middleName?: string;
 	lastName: string;
 	nameExtension?: string;
+	age: string;
+	gender: string;
 	lotNumber?: string;
 	streetName?: string;
 	district?: string;
@@ -52,6 +54,14 @@ const PositiveLogsSchema = new Schema({
 	nameExtension: {
 		type: String,
 		default: "",
+	},
+	age: {
+		type: String,
+		default: "",
+	},
+	gender: {
+		type: String,
+		default: "Male",
 	},
 	lotNumber: {
 		type: String,

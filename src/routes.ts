@@ -14,6 +14,7 @@ import { positiveLogsRouter } from "./modules/positive-logs";
 import { statisticsRouter } from "./modules/statistics";
 import { notificationRouter } from "./modules/notifications";
 import { deletionAccountRoute } from "./modules/users-for-deletion";
+import { diseaseRouter } from "./modules/diseases";
 
 export const mainRouter = Router();
 
@@ -41,3 +42,4 @@ mainRouter.use("/permissions", permissionRouter);
 mainRouter.use("/roles", roleRouter);
 mainRouter.use("/users", usersRouter);
 mainRouter.use('/statistics', statisticsRouter);
+mainRouter.use("/disease", diseaseRouter);

@@ -11,6 +11,7 @@ export type PositiveTypeSchema = {
 	middleName?: string;
 	lastName: string;
 	nameExtension?: string;
+	disease: string;
 	age: string;
 	gender: string;
 	lotNumber?: string;

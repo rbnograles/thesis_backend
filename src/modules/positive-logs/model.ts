@@ -31,6 +31,10 @@ const PositiveLogsSchema = new Schema({
 		type: String,
 		default: "Positive",
 	},
+	disease: {
+		type: String,
+		required: true
+	},
 	mobileNumber: {
 		type: String,
 		required: true,

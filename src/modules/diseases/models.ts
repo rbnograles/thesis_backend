@@ -25,7 +25,11 @@ const DiseaseSchema = new Schema({
 	totalTraceCount: {
 		type: String,
 		default: "",
-	}
+	},
+	createdAt: {
+		type: String,
+		defailt: Date.now()
+	}		
 });
 
 export const DiseaseModel = model<IDiseaseType>("disease", DiseaseSchema);

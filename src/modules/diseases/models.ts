@@ -28,7 +28,7 @@ const DiseaseSchema = new Schema({
 	},
 	createdAt: {
 		type: String,
-		defailt: Date.now()
+		default: Date.now()
 	}		
 });
 

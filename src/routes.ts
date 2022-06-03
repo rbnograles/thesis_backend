@@ -20,6 +20,7 @@ export const mainRouter = Router();
 
 // otp route
 mainRouter.use("/messages", messageRouter);
+mainRouter.use("/roles/check", roleRouter);
 mainRouter.use("/visitation-history", visitationHistoryRouter);
 mainRouter.use("/public/users", usersRouter);
 mainRouter.use("/public/positive-log", positiveLogsRouter);

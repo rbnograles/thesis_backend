@@ -11,7 +11,8 @@ const modules = [
 	"Admin-Application-Download",
 	"Visitation-History",
 	"Users",
-	"Statistics"
+	"Statistics",
+	"Disease"
 ];
 
 const actions = ["Read", "Create", "Update", "Delete"];

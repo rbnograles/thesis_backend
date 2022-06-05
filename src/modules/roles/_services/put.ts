@@ -9,7 +9,7 @@ export const putOneService = async (
 	if (await isExistingInDatabase("_id", id, RoleModel, true)) {
 		return await RoleModel.findOneAndUpdate({ _id: id }, data, {
 			returnOriginal: false,
-		});
+		}).populate("permissions");
 	} else {
 		throw NotFoundError("Assessment not found");
 	}

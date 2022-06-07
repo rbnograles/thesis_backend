@@ -4,6 +4,7 @@ import {
 	getOneService,
 	getOneCloseContactServices,
 	getOneVisitationHistoryService,
+	alertContacts
 } from "../_services/get";
 
 export const getOneController: RequestHandler = async (req, res, next) => {
@@ -23,12 +24,20 @@ export const getAllCloseContactInformation: RequestHandler = async (
 ) => {
 	try {
 		const data = await getOneCloseContactServices(req.params.id);
-
 		res.status(201).json({ success: true, data: data });
 	} catch (err) {
 		next(err);
 	}
 };
+
+export const alertAllCloseContactService: RequestHandler =async (req, res, next) => {
+	try {
+		const data = await alertContacts(req.params.id);
+		res.status(201).json({ success: true, data: data });
+	} catch (error) {
+		next(error);
+	}
+}
 
 export const getOneVisitationHistory: RequestHandler = async (
 	req,

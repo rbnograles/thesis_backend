@@ -61,6 +61,14 @@ export const getOneCloseContactServices = async (id: string): Promise<any> => {
 	return closeContactsVisitations;
 };
 
+export const alertContacts = async (id: string) : Promise<any> => {
+
+	const data = await getOneCloseContactServices(id);
+
+	return data.filter((positive) => { return positive.userId.mobileNumber !== id });
+
+}
+
 export const getOneVisitationHistoryService = async (
 	id: string
 ): Promise<any> => {

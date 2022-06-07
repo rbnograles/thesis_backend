@@ -27,6 +27,7 @@ mainRouter.use("/public/positive-log", positiveLogsRouter);
 mainRouter.use("/public/location", locationRouter);
 mainRouter.use("/public/notification", notificationRouter);
 mainRouter.use("/public/delete-account", deletionAccountRoute);
+mainRouter.use("/public/disease", diseaseRouter);
 // validators
 mainRouter.use("/auth", authRouter);
 

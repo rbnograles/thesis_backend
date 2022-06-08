@@ -2,9 +2,15 @@ import { PositiveLogsModel } from "../model";
 import { UserAccountModel } from "../../users/model";
 
 export const putOneRecoveredService = async (
-	data: any
+	id: any
 ): Promise<Boolean> => {
-	await PositiveLogsModel.findOneAndUpdate({ mobileNumber: data.mobileNumber }, { healthStatus: "Recovered" }, { returnOriginal: false });
-    await UserAccountModel.findOneAndUpdate({ mobileNumber: data.mobileNumber }, { userHealthStatus: "Recovered" }, { returnOriginal: false });
+
+	const data = await PositiveLogsModel.findOneAndUpdate({ _id: id }, { healthStatus: "Recovered" }, { returnOriginal: false });
+    const findAnyReport = await PositiveLogsModel.find({ mobileNumber: data.mobileNumber, healthStatus: "Positive" })
+    
+    if(findAnyReport.length === 0) {
+        await UserAccountModel.findOneAndUpdate({ mobileNumber: data.mobileNumber }, { userHealthStatus: "Recovered" }, { returnOriginal: false });
+    }
+    
     return true;
 };

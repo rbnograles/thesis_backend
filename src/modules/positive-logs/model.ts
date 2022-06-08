@@ -21,6 +21,7 @@ export type PositiveTypeSchema = {
 	barangay?: string;
 	province?: string;
 	createdAt?: string;
+	mobileNumber: string;
 };
 
 const PositiveLogsSchema = new Schema({

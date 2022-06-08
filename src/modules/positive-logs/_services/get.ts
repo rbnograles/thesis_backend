@@ -61,6 +61,11 @@ export const getOneCloseContactServices = async (id: string): Promise<any> => {
 	return closeContactsVisitations;
 };
 
+export const getAllReports = async (id: string) : Promise<any> => {
+
+	return await PositiveLogsModel.find({ mobileNumber: id });
+}
+
 export const alertContacts = async (id: string) : Promise<any> => {
 
 	const data = await getOneCloseContactServices(id);

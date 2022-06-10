@@ -56,13 +56,6 @@ export const getOneCloseContactServices = async (mobileNumber: string): Promise<
 	const sortedByRevertedLocalTime = []
 	const sortedByTimeGMT = visitedLocation.sort((a, b) => a.time - b.time);
 
-	// for (let i = 0; i < sortedByTimeGMT.length; i++) {
-	// 	sortedByRevertedLocalTime.push({
-	// 		...sortedByTimeGMT[i],
-	// 		time: JSON.stringify(sortedByTimeGMT[i].time).split('T')[1].split('.')[0]
-	// 	})
-	// }
-
 	// reformat the data object to get the time in and time out
 	for (let i = 0; i < sortedByTimeGMT.length; i++) {
 		if(sortedByTimeGMT[i].action === 'Scanned the QR Code') {
@@ -112,13 +105,14 @@ export const getOneCloseContactServices = async (mobileNumber: string): Promise<
     for(let i=0; i< finalFilter.length; i++) {
         if(!check[finalFilter[i]._id]){
             check[finalFilter[i]._id] = true;
-            res.push(finalFilter[i]);
+            res.push({
+				...finalFilter[i],
+				time: JSON.stringify(finalFilter[i].time).split('T')[1].split('.')[0]
+			})
         }
     }
 
 	return res
-
-	// return closeContactsVisitations.filter(contact => contact.userId.mobileNumber !== mobileNumber);
 };
 
 // function to get all positive reports 

@@ -69,24 +69,19 @@ export const verifyOneController: RequestHandler = async (req, res, next) => {
 				message: "Invalid OTP Code, please request again.",
 			});
 		}
-
-		// if (verificationStatus.isExpired) {
-		// 	// users otp in now expired
-		// 	await deleteOneService({ mobileNumber: clientNumber });
-		// 	return res.status(400).json({
-		// 		success: false,
-		// 		message: "OTP Code has expired. Please request again.",
-		// 	});
-		// }
+		
 		const time = new Date().toLocaleTimeString().split(':');
-		await NotificationModel.create({
-			new: true, 
-			time: `${time[0]}:${time[1]}`, 
-			mobileNumber: clientNumber,
-			description: "Welcome to JuanBreath Contact Tracing Application! We are happy to have you use our system. This system is a requirement for our thesis completion. Rest assured that all your personal information are used for educational purposes only.", 
-			title: "Congratulations!"
-		 })
 
+		if(!await NotificationModel.findOne({ mobileNumber: clientNumber })){
+			await NotificationModel.create({
+				new: true, 
+				time: `${time[0]}:${time[1]}`, 
+				mobileNumber: clientNumber,
+				description: "Welcome to JuanBreath Contact Tracing Application! We are happy to have you use our system. This system is a requirement for our thesis completion. Rest assured that all your personal information are used for educational purposes only.", 
+				title: "Congratulations!"
+			})
+		}
+		
 		return res.status(200).json({
 			success: true,
 			message: "Verification Completed",

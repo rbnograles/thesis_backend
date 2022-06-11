@@ -22,6 +22,8 @@ export type PositiveTypeSchema = {
 	province?: string;
 	createdAt?: string;
 	mobileNumber: string;
+	lng?: string;
+	lat?: string;
 };
 
 const PositiveLogsSchema = new Schema({
@@ -90,6 +92,14 @@ const PositiveLogsSchema = new Schema({
 		default: "",
 	},
 	province: {
+		type: String,
+		default: "",
+	},
+	lng: {
+		type: String,
+		default: "",
+	},
+	lat: {
 		type: String,
 		default: "",
 	},

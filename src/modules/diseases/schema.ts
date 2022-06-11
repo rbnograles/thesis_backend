@@ -3,6 +3,7 @@ import Joi from "joi";
 export const diseaseSchema = Joi.object({
 	name: Joi.string().required(),
 	isPriority: Joi.boolean(),
+	color: Joi.string().allow("", null),
 	totalMonitoredToday: Joi.string().allow("", null),
 	totalTraceCount: Joi.string().allow("", null),
 });

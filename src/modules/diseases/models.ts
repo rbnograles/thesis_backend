@@ -7,6 +7,7 @@ export type DiseaseTypeSchema = {
 	isPriority: boolean;
 	totalMonitoredToday: string;
 	totalTraceCount: string;
+	color?: string;
 	createdAt: string;
 };
 
@@ -24,6 +25,10 @@ const DiseaseSchema = new Schema({
 		default: "",
 	},
 	totalTraceCount: {
+		type: String,
+		default: "",
+	},
+	color: {
 		type: String,
 		default: "",
 	},

@@ -10,7 +10,7 @@ export const getManyService = async () => {
 	
 	const filteredData  = [];
 	const date = new Date().toISOString().split('T')[0];
-	const data = await DiseaseModel.find();
+	const data = await DiseaseModel.find({ healthStatus: 'Positive' });
 
 	for(let i = 0; i < data.length; i++) {
 		let todayCount = 0;

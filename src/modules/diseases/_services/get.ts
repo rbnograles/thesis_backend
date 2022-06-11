@@ -22,6 +22,7 @@ export const getManyService = async () => {
 		}
 		filteredData.push({ 
 			name: data[i].name, 
+			color: data[i].color,
 			isPriority: data[i].isPriority, 
 			createdAt: data[i].createdAt,
             _id: data[i]._id, 
@@ -38,7 +39,7 @@ export const getManyServiceFiltered = async () => {
 	const newLoc = [];
 
 	for(let i = 0; i < data.length; i++) {
-		newLoc.push({ label: data[i].name, name: data[i].name})
+		newLoc.push({ label: data[i].name, name: data[i].name, color: data[i].color})
 	}
 	return newLoc
 };

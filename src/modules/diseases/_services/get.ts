@@ -10,11 +10,11 @@ export const getManyService = async () => {
 	
 	const filteredData  = [];
 	const date = new Date().toISOString().split('T')[0];
-	const data = await DiseaseModel.find({ healthStatus: 'Positive' });
+	const data = await DiseaseModel.find();
 
 	for(let i = 0; i < data.length; i++) {
 		let todayCount = 0;
-		const countCase = await PositiveLogsModel.find({ disease: data[i].name });
+		const countCase = await PositiveLogsModel.find({ disease: data[i].name, healthStatus: 'Positive' });
         for(let x = 0; x < countCase.length; x++) {
 			if(JSON.stringify(countCase[x].createdAt).split('T')[0].includes(date)) {
 				todayCount += 1;

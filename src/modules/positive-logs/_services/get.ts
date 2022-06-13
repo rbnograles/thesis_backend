@@ -1,6 +1,7 @@
 import { IPositiveLogsType, PositiveLogsModel } from "../model";
 import { UserAccountModel } from "../../users/model";
 import { VisitationHistoryModel } from "../../visitation-history/model";
+import { NotificationModel } from "../../notifications/model";
 // util
 import {
 	dates,
@@ -153,12 +154,17 @@ export const getAllReports = async (id: string): Promise<any> => {
 };
 
 // function to get alert all close contacts
-export const alertContacts = async (id: string): Promise<any> => {
-	const data = await getOneCloseContactServices(id);
-
-	return data.filter((positive) => {
-		return positive.userId.mobileNumber !== id;
-	});
+export const alertContacts = async (data: any): Promise<any> => {
+	const time = new Date().toLocaleTimeString().split(":");
+	for (let i = 0; i < data.mobileNumbers.length; i++) {
+		await NotificationModel.create({
+			new: true,
+			time: `${time[0]}:${time[1]}`,
+			mobileNumber: data.mobileNumbers[i],
+			description: `You are being notified by the system that you have a previous encounter with a person who is said to be positive of ${data.disease}.`,
+			title: "Close Contact Notice!",
+		});
+	}
 };
 
 // function to get all visitation history

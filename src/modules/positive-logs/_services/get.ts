@@ -59,8 +59,14 @@ export const getOneCloseContactServices = async (
 		}
 	}
 
+	let getUniqueDate = [
+		...new Map(
+			sortedByRevertedLocalTime.map((item) => [item["date"], item])
+		).values(),
+	];
+
 	// get the close contacts based on the visitation of the infected user
-	for (let i = 0; i < sortedByRevertedLocalTime.length; i++) {
+	for (let i = 0; i < getUniqueDate.length; i++) {
 		const closeContacts = await VisitationHistoryModel.find({
 			location: sortedByRevertedLocalTime[i].location,
 			date: sortedByRevertedLocalTime[i].date,
@@ -110,16 +116,21 @@ export const getOneCloseContactServices = async (
 	let res = [];
 
 	for (let i = 0; i < sortedByRevertedLocalTime.length; i++) {
+		// filter for those visitation that is within the time range
 		const resultData = formattedVisitationHistory.filter(function (a) {
 			let timeIn = new Date(a.time);
 			let timeOut = new Date(a.timeOut);
 			return (
 				timeIn >= sortedByRevertedLocalTime[i].time &&
-				timeOut <= sortedByRevertedLocalTime[i].timeOut
+				timeOut <= sortedByRevertedLocalTime[i].timeOut &&
+				a.date === sortedByRevertedLocalTime[i].date
 			);
 		});
 		finalFilter.push(...resultData);
 	}
+
+	const dataThatAreNot15Mins = [];
+
 	for (let i = 0; i < finalFilter.length; i++) {
 		let diffInMS = Math.abs(
 			new Date(finalFilter[i].timeOut).getTime() -
@@ -139,9 +150,58 @@ export const getOneCloseContactServices = async (
 					.split(".")[0]
 					.slice(0, -3),
 			});
+		} else {
+			dataThatAreNot15Mins.push(finalFilter[i]);
 		}
 	}
 
+	const prepTrackingForManyContacts = [];
+	// check if a none 15 minutes contact has been repeated for the same day
+	for (let i = 0; i < dataThatAreNot15Mins.length; i++) {
+		for (let x = 0; x < formattedVisitationHistory.length; x++) {
+			if (
+				dataThatAreNot15Mins[i].userId.mobileNumber ===
+					formattedVisitationHistory[x].userId.mobileNumber &&
+				dataThatAreNot15Mins[i]._id !==
+					formattedVisitationHistory[x]._id &&
+				dataThatAreNot15Mins[i].date ===
+					formattedVisitationHistory[x].date &&
+				dataThatAreNot15Mins[i].location ===
+					formattedVisitationHistory[x].location
+			) {
+				prepTrackingForManyContacts.push(
+					formattedVisitationHistory[x],
+					dataThatAreNot15Mins[x]
+				);
+			}
+		}
+	}
+
+	let commulativeTime = 0;
+
+	for (let i = 0; i < prepTrackingForManyContacts.length; i++) {
+		let diffInMS = Math.abs(
+			new Date(prepTrackingForManyContacts[i].timeOut).getTime() -
+				new Date(prepTrackingForManyContacts[i].time).getTime()
+		);
+		var mm = Math.floor(diffInMS / 1000 / 60);
+		commulativeTime = commulativeTime + mm;
+		//  if the total commulative time is greater that 15 mins
+		if (commulativeTime >= 15) {
+			res.push({
+				...prepTrackingForManyContacts[i],
+				totalContactDuration: `${commulativeTime} cumulative minutes`,
+				time: JSON.stringify(prepTrackingForManyContacts[i].time)
+					.split("T")[1]
+					.split(".")[0]
+					.slice(0, -3),
+				timeOut: JSON.stringify(prepTrackingForManyContacts[i].timeOut)
+					.split("T")[1]
+					.split(".")[0]
+					.slice(0, -3),
+			});
+		}
+	}
 	return res;
 };
 

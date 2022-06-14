@@ -15,13 +15,14 @@ export const getOneService = async (id: string): Promise<IPositiveLogsType> => {
 };
 
 export const getOneCloseContactServices = async (
-	mobileNumber: string
+	mobileNumber: string,
+	date: string
 ): Promise<any> => {
 	// variable to store the result
 	let closeContactsVisitations = [];
 	let allVisitationfrom14Days = [];
 	// get the current inital data today
-	const past14DayDate = new Date();
+	const past14DayDate = new Date(date);
 	// get the starting date counting back for 14 days
 	past14DayDate.setDate(past14DayDate.getDate() - 2 * 7);
 	// get the user info

@@ -24,7 +24,10 @@ export const getAllCloseContactInformation: RequestHandler = async (
 	next
 ) => {
 	try {
-		const data = await getOneCloseContactServices(req.params.id);
+		const data = await getOneCloseContactServices(
+			req.params.id,
+			req.params.date
+		);
 		res.status(201).json({ success: true, data: data });
 	} catch (err) {
 		next(err);

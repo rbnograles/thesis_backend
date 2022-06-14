@@ -6,5 +6,5 @@ export const getOneService = async (id: string): Promise<UserSchema> => {
 };
 
 export const getManyService = async (): Promise<Array<UserSchema>> => {
-	return await UserAccountModel.find();
+	return await UserAccountModel.find().sort({ createdAt: 1 });
 };

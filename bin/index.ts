@@ -4,4 +4,4 @@ console.log("Juan Breath Development Phase")
 
 console.log("Starting Development Seeders")
 
-seed(false);
+seed(true);

@@ -8,7 +8,7 @@ import { AdminAccountModel } from "../src/modules/admin/model";
 import { LocationModel } from "../src/modules/locations/models";
 import { PermissionModel } from "../src/modules/permissions/model";
 import { RoleModel } from "../src/modules/roles/model";
-
+import { UserSeed } from "./users";
 // database connection config
 import { connectToDatabase } from "../src/_utils/dbConnect";
 
@@ -58,6 +58,8 @@ export async function seed(safe: boolean): Promise<void> {
 				await seedAccounts();
 				await seedLocations();
 			}
+
+			await UserSeed();
 
 			console.log("\n\nSeeding successful!");
 		} else {

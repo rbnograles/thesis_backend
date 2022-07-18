@@ -14,8 +14,8 @@ export const createOneController: RequestHandler = async (req, res, next) => {
 		const authToken = process.env.TWILIO_AUTH_TOKEN;
 		const client = require("twilio")(accountSid, authToken);
 
-		// const systemNumber = "+19377213296";
 		const systemNumber = "+17372347216";
+		// const systemNumber = "+17372347216";
 		// get the users mobile number
 		const clientNumber = `+63${req.body.mobileNumber}`;
 		// generate 4 ramdom otp code
@@ -40,7 +40,7 @@ export const createOneController: RequestHandler = async (req, res, next) => {
 				res.status(200).json({ success: false, message: err })	
 			});
 		
-		res.status(200).json({ success: true, otp: otp })
+		// res.status(200).json({ success: true, otp: otp })
 
 	} catch (err) {
 		next(err);

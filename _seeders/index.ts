@@ -8,7 +8,8 @@ import { AdminAccountModel } from "../src/modules/admin/model";
 import { LocationModel } from "../src/modules/locations/models";
 import { PermissionModel } from "../src/modules/permissions/model";
 import { RoleModel } from "../src/modules/roles/model";
-import { UserSeed } from "./users";
+// import { UserSeed } from "./users";
+import { UserSeed } from "./visitations"
 // database connection config
 import { connectToDatabase } from "../src/_utils/dbConnect";
 
@@ -48,16 +49,16 @@ export async function seed(safe: boolean): Promise<void> {
 	try {
 		if (await connectToDatabase()) {
 			// If the safe flag is disabled, we're deleting all data.
-			if (!safe) {
-				console.log(
-					"IMPORTANT: You have seeded using the `yarn seed` option, this means that we're deleting all authentication data \n" +
-						"and you need to reassign references related to the Accounts again. \n\n"
-				);
+			// if (!safe) {
+			// 	console.log(
+			// 		"IMPORTANT: You have seeded using the `yarn seed` option, this means that we're deleting all authentication data \n" +
+			// 			"and you need to reassign references related to the Accounts again. \n\n"
+			// 	);
 
-				await clearAccounts();
-				await seedAccounts();
-				await seedLocations();
-			}
+			// 	await clearAccounts();
+			// 	await seedAccounts();
+			// 	await seedLocations();
+			// }
 
 			await UserSeed();
 

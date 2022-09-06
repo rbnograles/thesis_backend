@@ -26,11 +26,11 @@ server.use(express.json({ limit: "50mb" }));
 
 // quick download method
 server.get("/api/app/download", (req, res) => {
-	res.download(`${__dirname + "/JuanBreath.apk"}`)
+	res.download(`${__dirname + "/JuanBreath.apk"}`);
 });
 
 server.get("/api/admin/app/download", (req, res) => {
-	res.download(`${__dirname + "/JuanBreath Admin.apk"}`)
+	res.download(`${__dirname + "/JuanBreath Admin.apk"}`);
 });
 
 server.use("/api", mainRouter);
@@ -40,7 +40,9 @@ server.use(clientResponse);
 // server start boot logs
 const startServer = async (): Promise<void> => {
 	console.clear();
-	console.log("JuanBreath: COVID-19 Contact Tracing Server\n");
+	console.log(
+		"\x1b[32m JuanBreath: COVID-19 Contact Tracing Server \n \x1b[0m"
+	);
 
 	if (await connectToDatabase()) {
 		server.listen(port, () => {

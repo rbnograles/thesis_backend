@@ -1,22 +1,28 @@
-# **JuanBreath: Contact Tracing Backend**
+# JuanBreath: Contact Tracing Backend
 
-> ### **About the project**:
+This is my thesis backend server, the main goal of this is to provide data management and encrypted data transfer when needed for the contact tracing application.
 
-    This is my thesis backend server, the main goal of this is to provide data management and encrypted data transfer when needed for the contact tracing application.
+## Structure
 
-> ### **Development Stack**
+This project is currently divided into 3:
+
+-   \_seeders - `Data seeder to populate the database`
+-   .vscode - `VS Code Config files`
+-   bin `_seeder start script`
+-   build `Contains the builded file for the server`
+-   src `Contains the features of the server`
+
+## Development Stack
 
 This project is make posible using the following languages
 
-1. `Javascript` - Base Language
-2. `MongoDB` - Database
-3. `TypeScript`
-4. `Express`
-5. `Node.JS`
+1. **Javascript**
+2. **MongoDB**
+3. **TypeScript**
+4. **Express**
+5. **Node.JS**
 
-<br/>
-
-> ### **Getting Started**
+## Getting Started
 
 Use the git manager [git](https://git-scm.com/) to install the project.
 
@@ -51,8 +57,6 @@ Please make sure to update tests as appropriate.
 
 [MIT](https://choosealicense.com/licenses/mit/)
 
-<br/>
-
-> ### **Lead Developer and Graphic Designer**
+> ## **Lead Developer**
 
 -   Ryan Nograles :bowtie:

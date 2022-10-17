@@ -29,10 +29,6 @@ server.get("/api/app/download", (req, res) => {
 	res.download(`${__dirname + "/JuanBreath.apk"}`);
 });
 
-server.get("/api/admin/app/download", (req, res) => {
-	res.download(`${__dirname + "/JuanBreath Admin.apk"}`);
-});
-
 server.use("/api", mainRouter);
 
 server.use(clientResponse);

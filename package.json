@@ -19,8 +19,6 @@
 	},
 	"homepage": "https://github.com/MrZeal025/thesis_backend#readme",
 	"dependencies": {
-		"@fars20/random-sources": "0.2.0",
-		"@sendgrid/mail": "^7.6.2",
 		"bcryptjs": "^2.4.3",
 		"body-parser": "^1.19.0",
 		"cors": "^2.8.5",
@@ -31,7 +29,6 @@
 		"faker": "^5.5.3",
 		"joi": "^17.4.2",
 		"jsonwebtoken": "^8.5.1",
-		"messagebird": "^3.7.1",
 		"moment": "^2.29.3",
 		"mongoose": "5.12.8",
 		"morgan": "^1.10.0",

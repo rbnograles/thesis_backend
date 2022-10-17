@@ -29,6 +29,11 @@ server.get("/api/app/download", (req, res) => {
 	res.download(`${__dirname + "/JuanBreath.apk"}`);
 });
 
+// quick download method
+server.get("/api/version", (req, res) => {
+	res.send({ message: "version 1.14.2" });
+});
+
 server.use("/api", mainRouter);
 
 server.use(clientResponse);
